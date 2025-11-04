@@ -1,0 +1,1468 @@
+{
+    "name": "Legal Test Scenario",
+    "flow": [
+        {
+            "id": 1,
+            "module": "google-sheets:watchRows",
+            "version": 2,
+            "parameters": {
+                "from": "drive",
+                "mode": "select",
+                "limit": 1,
+                "sheetId": "Sheet1",
+                "__IMTCONN__": 10285607,
+                "spreadsheetId": "/1IzfMCnvBvxg_9h-cww8TRXhPPvVH3GThqU-oJJsIszQ",
+                "tableFirstRow": "A1:D1",
+                "includesHeaders": true,
+                "valueRenderOption": "FORMATTED_VALUE",
+                "dateTimeRenderOption": "FORMATTED_STRING"
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 300
+                },
+                "restore": {
+                    "parameters": {
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "mode": {
+                            "label": "Search by path"
+                        },
+                        "sheetId": {
+                            "label": "Sheet1"
+                        },
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "My Google connection"
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "Make scenario"
+                            ]
+                        },
+                        "includesHeaders": {
+                            "label": "Yes"
+                        },
+                        "valueRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted value"
+                        },
+                        "dateTimeRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted string"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    },
+                    {
+                        "name": "mode",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "select",
+                                "fromAll",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "select",
+                        "label": "Table contains headers",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                true,
+                                false
+                            ]
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit",
+                        "required": true
+                    },
+                    {
+                        "name": "valueRenderOption",
+                        "type": "select",
+                        "label": "Value render option",
+                        "validate": {
+                            "enum": [
+                                "FORMATTED_VALUE",
+                                "UNFORMATTED_VALUE",
+                                "FORMULA"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "dateTimeRenderOption",
+                        "type": "select",
+                        "label": "Date and time render option",
+                        "validate": {
+                            "enum": [
+                                "SERIAL_NUMBER",
+                                "FORMATTED_STRING"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet ID",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "tableFirstRow",
+                        "type": "text",
+                        "label": "Row with headers",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__ROW_NUMBER__",
+                        "type": "number",
+                        "label": "Row number"
+                    },
+                    {
+                        "name": "__SPREADSHEET_ID__",
+                        "type": "text",
+                        "label": "Spreadsheet ID"
+                    },
+                    {
+                        "name": "__SHEET__",
+                        "type": "text",
+                        "label": "Sheet"
+                    },
+                    {
+                        "name": "0",
+                        "type": "text",
+                        "label": "Client Name (A)"
+                    },
+                    {
+                        "name": "1",
+                        "type": "text",
+                        "label": "Case Type (B)"
+                    },
+                    {
+                        "name": "2",
+                        "type": "text",
+                        "label": "Email (C)"
+                    },
+                    {
+                        "name": "3",
+                        "type": "text",
+                        "label": "Document Type Requested (D)"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 22,
+            "module": "util:SetVariable2",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "name": "id",
+                "scope": "roundtrip",
+                "value": "{{uuid}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 300
+                },
+                "restore": {
+                    "expect": {
+                        "scope": {
+                            "label": "One cycle"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Variable name",
+                        "required": true
+                    },
+                    {
+                        "name": "scope",
+                        "type": "select",
+                        "label": "Variable lifetime",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "roundtrip",
+                                "execution"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "label": "Variable value"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "any",
+                        "label": "id"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 28,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 300
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 19,
+                            "module": "postgres:Query",
+                            "version": 2,
+                            "parameters": {
+                                "account": 12700066,
+                                "continueWhenNoRes": false,
+                                "isToManageDataInSharedTransaction": true
+                            },
+                            "mapper": {
+                                "command": "INSERT INTO request_log (id, client_name, case_type, document_type_requested,status)\nVALUES ('{{22.id}}','{{1.`0`}}','{{1.`1`}}','{{1.`3`}}', 'Request Received'\n)"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 0
+                                },
+                                "restore": {
+                                    "parameters": {
+                                        "account": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "postgres"
+                                            },
+                                            "label": "My PostgreSQL connection"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "account",
+                                        "type": "account:postgres",
+                                        "label": "Connection",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "continueWhenNoRes",
+                                        "type": "boolean",
+                                        "label": "Continue the execution of the route even if the module returns no rows",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "isToManageDataInSharedTransaction",
+                                        "type": "boolean",
+                                        "label": "Manage data within the shared transaction",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "command",
+                                        "type": "text",
+                                        "label": "Command",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 2,
+                            "module": "google-drive:searchForFilesFolders",
+                            "version": 4,
+                            "parameters": {
+                                "__IMTCONN__": 12686957
+                            },
+                            "mapper": {
+                                "limit": "1",
+                                "query": "{{1.`3`}}",
+                                "select": "list",
+                                "folderId": "/1hNm_n-WXpmY-0y",
+                                "operator": "contains",
+                                "retrieve": "file",
+                                "searchType": "title",
+                                "destination": "drive"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 900,
+                                    "y": 450
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "select": {
+                                            "label": "Select from the list"
+                                        },
+                                        "folderId": {
+                                            "mode": "chose",
+                                            "path": [
+                                                "Make scenarios"
+                                            ]
+                                        },
+                                        "operator": {
+                                            "label": "Search for name containing the search term"
+                                        },
+                                        "retrieve": {
+                                            "label": "Files"
+                                        },
+                                        "searchType": {
+                                            "label": "Search within file/folder names"
+                                        },
+                                        "destination": {
+                                            "label": "My Drive"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "My Google Restricted connection"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google-restricted",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "type": "hidden"
+                                    },
+                                    {
+                                        "name": "select",
+                                        "type": "select",
+                                        "label": "Select the Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "map",
+                                                "list"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "retrieve",
+                                        "type": "select",
+                                        "label": "Retrieve",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "file",
+                                                "folder",
+                                                "file_folder"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "searchType",
+                                        "type": "select",
+                                        "label": "Search",
+                                        "validate": {
+                                            "enum": [
+                                                "title",
+                                                "fulltext",
+                                                "custom"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "type": "uinteger",
+                                        "label": "Limit"
+                                    },
+                                    {
+                                        "name": "destination",
+                                        "type": "select",
+                                        "label": "Choose a Drive",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "folderId",
+                                        "type": "folder",
+                                        "label": "Choose a Folder"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "type": "text",
+                                        "label": "Query",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "type": "select",
+                                        "label": "Search options",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "=",
+                                                "contains"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 35,
+                            "module": "builtin:BasicRouter",
+                            "version": 1,
+                            "mapper": null,
+                            "metadata": {
+                                "designer": {
+                                    "x": 1200,
+                                    "y": 450
+                                }
+                            },
+                            "routes": [
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 3,
+                                            "module": "google-docs:createADocumentFromTemplate",
+                                            "version": 1,
+                                            "parameters": {
+                                                "__IMTCONN__": 10285607
+                                            },
+                                            "filter": {
+                                                "name": "",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{2.`__IMTLENGTH__`}}",
+                                                            "b": "0",
+                                                            "o": "text:notequal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "name": "{{2.name}}",
+                                                "select": "map",
+                                                "document": "{{2.id}}",
+                                                "folderId": "/1dbTuZ1tCE",
+                                                "requests": [
+                                                    {
+                                                        "text": "Client Name",
+                                                        "replaceText": "{{1.`0`}}"
+                                                    },
+                                                    {
+                                                        "text": "Case Type",
+                                                        "replaceText": "{{1.`1`}}"
+                                                    },
+                                                    {
+                                                        "text": "Date",
+                                                        "replaceText": "{{formatDate(now; \"DD/MM/YYYY\")}}"
+                                                    }
+                                                ],
+                                                "destination": "drive"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1500,
+                                                    "y": 300
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "select": {
+                                                            "label": "By Mapping"
+                                                        },
+                                                        "folderId": {
+                                                            "mode": "chose",
+                                                            "path": [
+                                                                "Legal Updated"
+                                                            ]
+                                                        },
+                                                        "requests": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null,
+                                                                null,
+                                                                null
+                                                            ]
+                                                        },
+                                                        "destination": {
+                                                            "label": "My Drive"
+                                                        },
+                                                        "imageReplacement": {
+                                                            "mode": "chose"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "__IMTCONN__": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "google"
+                                                            },
+                                                            "label": "My Google connection"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "__IMTCONN__",
+                                                        "type": "account:google",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "select",
+                                                        "type": "select",
+                                                        "label": "Create a Document from a Template",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "map",
+                                                                "dropdown"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "name",
+                                                        "type": "text",
+                                                        "label": "Title",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "destination",
+                                                        "type": "select",
+                                                        "label": "New Drive Location",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "drive",
+                                                                "share",
+                                                                "team"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "document",
+                                                        "type": "text",
+                                                        "label": "Document ID",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "requests",
+                                                        "spec": [
+                                                            {
+                                                                "name": "text",
+                                                                "type": "text",
+                                                                "label": "Tags",
+                                                                "required": true
+                                                            },
+                                                            {
+                                                                "name": "replaceText",
+                                                                "type": "text",
+                                                                "label": "Replaced Value"
+                                                            }
+                                                        ],
+                                                        "type": "array",
+                                                        "label": "Values"
+                                                    },
+                                                    {
+                                                        "name": "imageReplacement",
+                                                        "spec": [
+                                                            {
+                                                                "name": "imageObjectId",
+                                                                "type": "text",
+                                                                "label": "Image Object ID",
+                                                                "required": true
+                                                            },
+                                                            {
+                                                                "name": "url",
+                                                                "type": "text",
+                                                                "label": "Image URL",
+                                                                "required": true
+                                                            },
+                                                            {
+                                                                "name": "tabId",
+                                                                "type": "text",
+                                                                "label": "Tab ID"
+                                                            }
+                                                        ],
+                                                        "type": "array",
+                                                        "label": "Images Replacement"
+                                                    },
+                                                    {
+                                                        "name": "folderId",
+                                                        "type": "folder",
+                                                        "label": "New Document's Location",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 5,
+                                            "module": "google-drive:getAFile",
+                                            "version": 4,
+                                            "parameters": {
+                                                "__IMTCONN__": 12686957
+                                            },
+                                            "mapper": {
+                                                "file": "{{3.id}}",
+                                                "select": "map",
+                                                "formatDrawings": "image/jpeg",
+                                                "formatDocuments": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                                "formatSpreadsheets": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                                "formatPresentations": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1800,
+                                                    "y": 300
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "select": {
+                                                            "label": "Enter manually"
+                                                        },
+                                                        "formatDrawings": {
+                                                            "label": "JPEG"
+                                                        },
+                                                        "formatDocuments": {
+                                                            "label": "MS Word Document"
+                                                        },
+                                                        "formatSpreadsheets": {
+                                                            "label": "MS Excel"
+                                                        },
+                                                        "formatPresentations": {
+                                                            "label": "MS PowerPoint"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "__IMTCONN__": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "google-restricted"
+                                                            },
+                                                            "label": "My Google Restricted connection"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "__IMTCONN__",
+                                                        "type": "account:google-restricted",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "type": "hidden"
+                                                    },
+                                                    {
+                                                        "name": "select",
+                                                        "type": "select",
+                                                        "label": "Enter a File ID",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "map",
+                                                                "value"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "formatDocuments",
+                                                        "type": "select",
+                                                        "label": "Convert Google Documents Files to Format",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                                                "application/pdf",
+                                                                "application/vnd.oasis.opendocument.text",
+                                                                "text/html",
+                                                                "text/plain",
+                                                                "application/rtf",
+                                                                "text/markdown"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "formatSpreadsheets",
+                                                        "type": "select",
+                                                        "label": "Convert Google Spreadsheets Files to Format",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                                                "application/x-vnd.oasis.opendocument.spreadsheet",
+                                                                "application/pdf",
+                                                                "text/csv"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "formatPresentations",
+                                                        "type": "select",
+                                                        "label": "Convert Google Slides Files to Format",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                                "application/pdf"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "formatDrawings",
+                                                        "type": "select",
+                                                        "label": "Convert Google Drawings Files to Format",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "image/jpeg",
+                                                                "image/png",
+                                                                "image/svg+xml",
+                                                                "application/pdf"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "file",
+                                                        "type": "text",
+                                                        "label": "File ID",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 4,
+                                            "module": "google-email:sendAnEmail",
+                                            "version": 4,
+                                            "parameters": {
+                                                "__IMTCONN__": 12690587
+                                            },
+                                            "mapper": {
+                                                "to": [
+                                                    "{{1.`2`}}"
+                                                ],
+                                                "subject": "Your Legal Document",
+                                                "bodyType": "collection",
+                                                "contents": [
+                                                    {
+                                                        "text": "Please find attached your legal document with your details.",
+                                                        "image": {}
+                                                    }
+                                                ],
+                                                "attachments": [
+                                                    {
+                                                        "data": "{{5.data}}",
+                                                        "filename": "{{5.name}}"
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 2100,
+                                                    "y": 300
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "cc": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "to": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null
+                                                            ]
+                                                        },
+                                                        "bcc": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "from": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "bodyType": {
+                                                            "label": "Collection of contents (text, images, etc.)"
+                                                        },
+                                                        "contents": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null
+                                                            ]
+                                                        },
+                                                        "signature": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "attachments": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null
+                                                            ]
+                                                        },
+                                                        "emailHeaders": {
+                                                            "mode": "chose"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "__IMTCONN__": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "google-email"
+                                                            },
+                                                            "label": "My Account"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "__IMTCONN__",
+                                                        "type": "account:google-email",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "to",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "type": "email",
+                                                            "label": "Recipient email address",
+                                                            "required": true,
+                                                            "validate": false
+                                                        },
+                                                        "type": "array",
+                                                        "label": "To",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "subject",
+                                                        "type": "text",
+                                                        "label": "Subject"
+                                                    },
+                                                    {
+                                                        "name": "bodyType",
+                                                        "type": "select",
+                                                        "label": "Body type",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "rawHtml",
+                                                                "collection"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "attachments",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "filename",
+                                                                    "type": "filename",
+                                                                    "label": "File name",
+                                                                    "required": true,
+                                                                    "semantic": "file:name"
+                                                                },
+                                                                {
+                                                                    "name": "data",
+                                                                    "type": "buffer",
+                                                                    "label": "Data",
+                                                                    "required": true,
+                                                                    "semantic": "file:data"
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": "Attachment"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Attachments"
+                                                    },
+                                                    {
+                                                        "name": "from",
+                                                        "type": "select",
+                                                        "label": "From"
+                                                    },
+                                                    {
+                                                        "name": "cc",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "type": "email",
+                                                            "label": "Recipient email address",
+                                                            "required": true
+                                                        },
+                                                        "type": "array",
+                                                        "label": "CC recipients"
+                                                    },
+                                                    {
+                                                        "name": "bcc",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "type": "email",
+                                                            "label": "Recipient email address",
+                                                            "required": true
+                                                        },
+                                                        "type": "array",
+                                                        "label": "BCC recipients"
+                                                    },
+                                                    {
+                                                        "name": "emailHeaders",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "key",
+                                                                    "type": "text",
+                                                                    "label": "Key",
+                                                                    "required": true
+                                                                },
+                                                                {
+                                                                    "name": "value",
+                                                                    "type": "text",
+                                                                    "label": "Value"
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": "Email header"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Additional email headers"
+                                                    },
+                                                    {
+                                                        "name": "contents",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "text",
+                                                                    "type": "text",
+                                                                    "label": "Text"
+                                                                },
+                                                                {
+                                                                    "name": "image",
+                                                                    "spec": [
+                                                                        {
+                                                                            "name": "filename",
+                                                                            "type": "filename",
+                                                                            "label": "File name",
+                                                                            "semantic": "file:name"
+                                                                        },
+                                                                        {
+                                                                            "name": "data",
+                                                                            "type": "buffer",
+                                                                            "label": "Data",
+                                                                            "semantic": "file:data"
+                                                                        },
+                                                                        {
+                                                                            "name": "width",
+                                                                            "type": "uinteger",
+                                                                            "label": "Width"
+                                                                        },
+                                                                        {
+                                                                            "name": "height",
+                                                                            "type": "uinteger",
+                                                                            "label": "Height"
+                                                                        }
+                                                                    ],
+                                                                    "type": "collection",
+                                                                    "label": "Image"
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": "Content"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Body contents"
+                                                    },
+                                                    {
+                                                        "name": "signature",
+                                                        "type": "select",
+                                                        "label": "Signature content"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 18,
+                                            "module": "postgres:Query",
+                                            "version": 2,
+                                            "parameters": {
+                                                "account": 12700066,
+                                                "continueWhenNoRes": false,
+                                                "isToManageDataInSharedTransaction": true
+                                            },
+                                            "mapper": {
+                                                "command": "UPDATE request_log\nSET status = 'Processed'\nWHERE id = '{{22.id}}';"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 2400,
+                                                    "y": 300
+                                                },
+                                                "restore": {
+                                                    "parameters": {
+                                                        "account": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "postgres"
+                                                            },
+                                                            "label": "My PostgreSQL connection"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "account",
+                                                        "type": "account:postgres",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "continueWhenNoRes",
+                                                        "type": "boolean",
+                                                        "label": "Continue the execution of the route even if the module returns no rows",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "isToManageDataInSharedTransaction",
+                                                        "type": "boolean",
+                                                        "label": "Manage data within the shared transaction",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "command",
+                                                        "type": "text",
+                                                        "label": "Command",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "flow": [
+                                        {
+                                            "id": 34,
+                                            "module": "google-email:sendAnEmail",
+                                            "version": 4,
+                                            "parameters": {
+                                                "__IMTCONN__": 12690566
+                                            },
+                                            "filter": {
+                                                "name": "File does not Exist",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{2.`__IMTLENGTH__`}}",
+                                                            "b": "0",
+                                                            "o": "text:equal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "to": [
+                                                    "{{1.`2`}}"
+                                                ],
+                                                "subject": "Template Not Found",
+                                                "bodyType": "collection",
+                                                "contents": [
+                                                    {
+                                                        "text": "This particular {{1.`3`}} template is not found.",
+                                                        "image": {}
+                                                    }
+                                                ]
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1500,
+                                                    "y": 600
+                                                },
+                                                "restore": {
+                                                    "expect": {
+                                                        "cc": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "to": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null
+                                                            ]
+                                                        },
+                                                        "bcc": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "from": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "bodyType": {
+                                                            "label": "Collection of contents (text, images, etc.)"
+                                                        },
+                                                        "contents": {
+                                                            "mode": "chose",
+                                                            "items": [
+                                                                null
+                                                            ]
+                                                        },
+                                                        "signature": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "attachments": {
+                                                            "mode": "chose"
+                                                        },
+                                                        "emailHeaders": {
+                                                            "mode": "chose"
+                                                        }
+                                                    },
+                                                    "parameters": {
+                                                        "__IMTCONN__": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "google-email"
+                                                            },
+                                                            "label": "Gmail"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "__IMTCONN__",
+                                                        "type": "account:google-email",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "to",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "type": "email",
+                                                            "label": "Recipient email address",
+                                                            "required": true,
+                                                            "validate": false
+                                                        },
+                                                        "type": "array",
+                                                        "label": "To",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "subject",
+                                                        "type": "text",
+                                                        "label": "Subject"
+                                                    },
+                                                    {
+                                                        "name": "bodyType",
+                                                        "type": "select",
+                                                        "label": "Body type",
+                                                        "required": true,
+                                                        "validate": {
+                                                            "enum": [
+                                                                "rawHtml",
+                                                                "collection"
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "name": "attachments",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "filename",
+                                                                    "type": "filename",
+                                                                    "label": "File name",
+                                                                    "required": true,
+                                                                    "semantic": "file:name"
+                                                                },
+                                                                {
+                                                                    "name": "data",
+                                                                    "type": "buffer",
+                                                                    "label": "Data",
+                                                                    "required": true,
+                                                                    "semantic": "file:data"
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": "Attachment"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Attachments"
+                                                    },
+                                                    {
+                                                        "name": "from",
+                                                        "type": "select",
+                                                        "label": "From"
+                                                    },
+                                                    {
+                                                        "name": "cc",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "type": "email",
+                                                            "label": "Recipient email address",
+                                                            "required": true
+                                                        },
+                                                        "type": "array",
+                                                        "label": "CC recipients"
+                                                    },
+                                                    {
+                                                        "name": "bcc",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "type": "email",
+                                                            "label": "Recipient email address",
+                                                            "required": true
+                                                        },
+                                                        "type": "array",
+                                                        "label": "BCC recipients"
+                                                    },
+                                                    {
+                                                        "name": "emailHeaders",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "key",
+                                                                    "type": "text",
+                                                                    "label": "Key",
+                                                                    "required": true
+                                                                },
+                                                                {
+                                                                    "name": "value",
+                                                                    "type": "text",
+                                                                    "label": "Value"
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": "Email header"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Additional email headers"
+                                                    },
+                                                    {
+                                                        "name": "contents",
+                                                        "spec": {
+                                                            "name": "value",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "text",
+                                                                    "type": "text",
+                                                                    "label": "Text"
+                                                                },
+                                                                {
+                                                                    "name": "image",
+                                                                    "spec": [
+                                                                        {
+                                                                            "name": "filename",
+                                                                            "type": "filename",
+                                                                            "label": "File name",
+                                                                            "semantic": "file:name"
+                                                                        },
+                                                                        {
+                                                                            "name": "data",
+                                                                            "type": "buffer",
+                                                                            "label": "Data",
+                                                                            "semantic": "file:data"
+                                                                        },
+                                                                        {
+                                                                            "name": "width",
+                                                                            "type": "uinteger",
+                                                                            "label": "Width"
+                                                                        },
+                                                                        {
+                                                                            "name": "height",
+                                                                            "type": "uinteger",
+                                                                            "label": "Height"
+                                                                        }
+                                                                    ],
+                                                                    "type": "collection",
+                                                                    "label": "Image"
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": "Content"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Body contents"
+                                                    },
+                                                    {
+                                                        "name": "signature",
+                                                        "type": "select",
+                                                        "label": "Signature content"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": 24,
+                                            "module": "postgres:Query",
+                                            "version": 2,
+                                            "parameters": {
+                                                "account": 12700066,
+                                                "continueWhenNoRes": false,
+                                                "isToManageDataInSharedTransaction": true
+                                            },
+                                            "filter": {
+                                                "name": "File does not Exist",
+                                                "conditions": [
+                                                    [
+                                                        {
+                                                            "a": "{{2.`__IMTLENGTH__`}}",
+                                                            "b": "0",
+                                                            "o": "number:equal"
+                                                        }
+                                                    ]
+                                                ]
+                                            },
+                                            "mapper": {
+                                                "command": "UPDATE request_log\nSET status = 'File not Found'\nWHERE id = '{{22.id}}';"
+                                            },
+                                            "metadata": {
+                                                "designer": {
+                                                    "x": 1800,
+                                                    "y": 600
+                                                },
+                                                "restore": {
+                                                    "parameters": {
+                                                        "account": {
+                                                            "data": {
+                                                                "scoped": "true",
+                                                                "connection": "postgres"
+                                                            },
+                                                            "label": "My PostgreSQL connection"
+                                                        }
+                                                    }
+                                                },
+                                                "parameters": [
+                                                    {
+                                                        "name": "account",
+                                                        "type": "account:postgres",
+                                                        "label": "Connection",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "continueWhenNoRes",
+                                                        "type": "boolean",
+                                                        "label": "Continue the execution of the route even if the module returns no rows",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "name": "isToManageDataInSharedTransaction",
+                                                        "type": "boolean",
+                                                        "label": "Manage data within the shared transaction",
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "expect": [
+                                                    {
+                                                        "name": "command",
+                                                        "type": "text",
+                                                        "label": "Command",
+                                                        "required": true
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": true,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu2.make.com",
+        "notes": []
+    }
+}
